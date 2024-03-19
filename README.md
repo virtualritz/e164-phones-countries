@@ -1,22 +1,37 @@
-# e164-phones-countries
-A small utility which maps E.164 international phone numbers to ISO 3166 country codes as well as the ISO 3166 country codes to country phone codes.
+# `e164-phones-countries`
 
-Add e164-phones-countries dependency to your project Cargo.toml file:
-```json
-[dependencies]
-e164-phones-countries = "0.1.1"
+<!-- cargo-rdme start -->
+
+Mapping [E.164](https://en.wikipedia.org/wiki/E.164) international phone
+numbers to
+[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+country codes as well as the ISO 3166-1 alpha-2 country codes to E.164
+country codes (one to three-digit phone number prefixes).
+
+## Examples
+
+```rust
+use e164_phones_countries::*;
+
+assert_eq!(
+    e164_number_to_iso3166("12069359290"),
+    Some("US"),
+);
+
+assert_eq!(
+    e164_number_to_iso3166("12229359290"),
+    None,
+);
+
+assert_eq!(
+    iso3166_to_e164_country_code("US"),
+    Some(1),
+);
+
+assert_eq!(
+    iso3166_to_e164_country_code("ZZ"),
+    None,
+);
 ```
 
-Add e164-phones-countries to your project's source code:
-```rust
-extern crate e164-phones-countries;
-
-use e164-phones-countries::find_iso_3166;
-use e164-phones-countries::find_phone_cc;
-```
-
-Methods signatures:
-```rust
-fn find_iso_3166(phone:&str) -> &'static str
-fn find_phone_cc(code:&str) -> &'static str
-
+<!-- cargo-rdme end -->
